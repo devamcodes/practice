@@ -1,0 +1,382 @@
+snipets:-
+rce - class component
+rfce- functional component
+rconst - constructor
+
+
+This file contains the steps to create the react app performed in the tutorial.
+
+CREATE APP:- type npx create-react-app <project_name> in the terminal.
+START SERVER:-now use cd to open project folder and type npm start to start dev server.
+
+now open app.js file to edit the basic look of the web page.
+
+Components:-
+    Create a component folder and a greet file in it. now import react create a function greet and hardcord greet message (use of arrow functions recomended) then you need to export by using export default <function_name> but to get the output you need to import the component.
+
+Class components:-
+    create a file import react and {component} from react now create a class which extends component 
+    which contains render method that returns null or some html now export it and import it.
+
+usage of types of components:
+
+    functional components : as much as possible --> advantage= absence of "this", solution without state, mainly responsible for ui, hooks/dumb/presentational.
+
+    class components : advantage--> they have more features, maintain state, complex ui logic, provide lifecycle hooks, stateful/smart/container.
+
+Props Vs. State:-
+    Props: Props get passed to the component, they are function parameters, they are immutable, props-functional components and this.props- class components.
+
+State: 
+    Managed within the component, like props state is the variables declared in the function body, state can be changed. useState Hook- functional components and this.state- class components.
+
+    As an example for state we created a new file  a class component message.js then we copied some code from the previoues file now just for the confirmation we included the component in app (till here there no chnage in process it's same as before)
+    now as we know that props are immutable so we cannot change the display message from the component so there comes the state.
+    first step is to create the state object in the class constructor then call super method now create the state object this.state and assign a property <property_name> now we will bind this in the return statement via this.state.<property_name>, now you need to create another method for the new message say changeMessage() which contains this.setState mehtod with property of new message.for eventHandling create a button which hears the click event via onClick method. pass the arrowfunction to return the changemessage method( to display new message.) in this event handler.
+
+*DO's and Don't in State and setState:-
+    create a component counter.js, now rce "tab" and remove the export from the class name. add text count and add this component in app.
+    create a constructor method and super method in it. create a state object with count property in it say:
+    this.state= {count:0} and bind it with {} in div tag now add a button to increment the counter 
+    1) "and add click event listner,create increment method to increase the count and pass increment method via arrow function and log the result." Here you are changing the state directly.
+
+    2) in the increment method use setState method to increment counter, for loging the value in cosole use the second parameter of setState mehtod instead of logging seperatly because the setState method is async.
+
+    if we call a function multiple times then state reamins the same e.g if we call the increment function four times like in incrementFour function then the output will be 1 as the state is same but if we use the previous state and increment the count from there then we can have 4 instead of 1.
+
+points to ponder :-
+setState:
+    Always use setState and never change the state directly.
+    if code has to be executed after the state has been updated then place it in call back function which is the second argument to the setState method.
+    when you have to update the state based on the prvious state value, pass in a function as an argument instead of the regular object.
+
+Destructuring props and state:-
+ Functional components:-
+    1) In greet component we can destructure the props as name , heroname in the function parameter then we can use name and heroname instead of props.name and props.heroname. sample code it commented out for reference,
+    2) you can create a new const variable for name, and heroname and give them the value of props as below.
+    const (name, heroname) = props
+
+ Class components:-
+    1) there is only one way to destructure the class components extract the props into a new variable as we done in the "destructuring in functional components method 2". sample code is commented out in the hello component.
+
+ Event Handling:-
+    Functional Component:-
+    create a new file say functionClick use rfce to auto
+    generate the basic code for this event handling. 
+    create a clickHandler function which simply logs the
+    output in console, now create a button and pass the 
+    click handler function into onClick method then import
+    the functionClick into app.js.
+
+Class Component:-
+    Almost the process for event handling in class component
+    is same as functional component but instead of clickhandler
+    function we use clickhandler method in class component
+    and pass this.clickhandler to onClick method.
+
+Binding the events:-
+    Create a file say eventBind now follow the steps and create a class component then create a constructor using "rconst" in it create a message property. now create another method clickhandler and new message that would be displayed after the click event. now as the atrribute of onClick method pass {this.clickhandler.bind(this)}
+    well there are many ways to bind the state so you can use whatever suites you. examples can be found in "eventBind.js"
+    1) Use of arrow function in onClick method.
+    2) You can bind the state from button.
+    3) You can bind state within the constructor.
+    4) You can create the clickHandler arrow function form instead of the method form.
+
+Methods as props:-
+
+    firstly you need to create a parentComponent in component folder, use rce now use rconst and set the parentName property of this.state as parent.
+    create a greet parent method we want to popup an alert window so use arlet tag (use templet literals instead of {}) print hello message into alert window. now bind this in constructor method.
+
+    now create another file childComponent, use rfce now add a button to greet parent, now add the childComponent tag in the render method of parentComponent.
+
+    now include the parentComponent into render method of app.js. (till now no change will be seen into web page)
+
+    add atrribute to childComponent of parentComponent, assign greetparent method to this attribute "greetHandler". now add onClick eventListener in the button and pass props.greetHandler arrow function so thhat you can pass the attributes.
+    so this means that we have paased the props from parent to child.
+
+    now pass the "child" name in greetHandler in chikd component so now you can access child name from greetParent method in parentComponent.
+
+Conditional Rendering:-
+    1) create a new file use rce and return any string and include it in app component(this process is just for the confirmation that our code is errorless). now use rconst create a property "isLoggedIn" as false. now we will use if/else to render conditionally. sample example is commented out.
+
+    2) you can create a temp variable message. now using if/else statement define the message variable as guest or member.example is commented
+
+    3) use turnary operator inside the return statement.example is commented.(use of this method is recommended as this is a very simple and optimised way to render conditionally.)
+
+    4) use the and operator(or short circuit operator).example is commented.(but we should use the method as less as possible because this will display message if it is a member orelse display message will be empty.)
+
+List Rendering:-
+    create a file say nameList create functional component now create name list variable now create another variable and assign the map method to it and return it.
+
+    e.g.2) create an array for multiple enteries of persons, create a new variable to store the output of map function and return that variable now in the map function use arrow function to itrate over every peson in the list and pass the data as prop to person component which will return the well structured string of data.
+
+Lists and Keys:-
+    Keys are the unique identifier. for setting the key you need to pass the kep as any normal prop like <person key = {person.id}/> and it cann't be used in child component for displaying it is only used by the react to keep a track.
+
+    well you should avoid using the list index as the key prop as it creates the sever problems so it is recommended that if you have any item like id then use it as key
+
+Sytling and css Basics:-
+    create a functional component and css file.
+    create a primary class now import tis css file in component, add style in the h1 tag.
+
+    Inline styling can be done inside the component lets suppopse we create a variable stye in the top now use camelcasing for the css properties and as the values of property use "" now in the h1 tag assign the style attribute with this variable.
+
+    In CSS Modules you need to import styles from the file to use it.e.g import styles from <path_of_file>
+
+Forms or Controlled components:-
+create a file say form now create a class component.
+
+controlled input component:-
+    now in the form tag create a lable tag for any form element and an inout tag. for example for example create a labl of username and input for the same (here this is still not a controlled component). use rconst and assugn the property username as empty string and in the value attribute of the input assign this state property "username" but you wont be able to input anything in the username as we still didnt created the onchange event.
+
+    now add onchange event eventListener to the input tag assign it to the event handler "handleusernamechange". this is a arrow function with parameter event and it retunrs setState method with the property of username assigned to event.taget.value. now you will be able to write in the input filed on the webpage.
+
+controlled textarea component:-
+    This has the same steps as the controlled input component.
+
+controlled seletct component:-
+    In this process you need to follow the same steps as controlled input component. but here the inital value of the state should be one of the list item.
+    for example if you have a list of sports the the initial vaalue when you define this sport in the state, should be one of the sport say tennis instead of empty string.
+
+Submit button:-
+    in the form tag add a submit handler onSubmit and create a submit handler arrow function which takes in any argument in constructor which simply alerts the user entries. add event.perventdefalut function to avoid the page refresh after alert window.
+
+Mounting Lifecycle Methods:-
+
+1)Constructor:
+
+    1> A special fnction that will be called whenever a new component is created.
+
+    2> Initialzing the state and binding the event handlers.
+
+    3> Do not cuase the side effects such as http requests.
+
+    4> Super(props) Directly overwrite the this.state.
+
+2)static getDerivedStateFromProps(props, state):
+
+    1> Used when the state of the component depends on changes in props over time.
+
+    2> To set the state.You cannot call this.state instead you need to pass object for state
+
+    3> Do not cuase the side effects.
+
+3)render():
+
+    1>Only reqired method.
+
+    2> It reads props & state and returns jsx.
+
+    3> Do not change the state or interact with DOM or make ajak calls.
+
+4) componentDidMount():
+
+    1> Invoked immediately after a component and all its children components have been rendered to DOM.
+
+    2> Cause side efects like interact with DOM or perform any ajax call to load data.
+
+Updating Lifecycle Methods:-
+
+1) static getDerivedStateFromProps:
+    This is same as mounting getDerivedStateFromProps method.
+
+2) shouldComponentUpdate(nextprop,nextState):
+
+    1> Dictates if the component should re-render or not.
+
+    2> performance optimisation.
+
+    3> do not cause sideeffects.
+
+3) getSnapshotBeforeUpdate(prevProps, prevState):
+
+    1> Called right before chnaages form the virtual DOM are to be reflected in DOM.
+
+    2> used to capture some info from DOM.
+
+    3> will return null or some value. returned value will be passed as third parameter to next method.
+
+4) componentDidUpdate(prevProps, prevState, snapshot):
+
+    1> it's called after render is finished in the re-render cycles.
+
+    2> can cause sideeffects.
+
+Fragments:-
+
+    while passing multiple elements to render we use div tag as the parent element but instead we can use react.Fragments to avoid the use of div tag.
+    for an example if we create a table in one class component and the table data in another child component and we import child to parent component then error messagewould be raised becos we used div tag to bind the return elements in the child component like. 
+    return(
+        <div>
+        <td>name</td>
+        <td> devam</td>
+        </div>
+    )
+    as the td tag is for tables you cannot use it in div tag so we will use fragments.
+    instead of div write react.fragments or keep it empty.
+
+Regualr component:
+    A regualr compoent doesnot implement the shouldComponentUpdate method it always returns true by default.
+
+pure component:
+    A pure component on the other hand impolements shouldComponentUpdate with shallow props and state comparison.
+
+Shallow Comparison:
+    1) Primitive types-
+        a(sc)b returns true if a and b have the same value and are of the same type. e.g (string "devam" (sc) string"devam" returns true.)
+
+    2) Complex types-
+        a(sc)b returns true if a and b reference the exact same object. e.g(
+            var a = [1,2,3];
+            var b= [1,2,3];
+            var c = a;
+            var ab_eq = (a === b); //false becoz both reference diff object
+            var ac_eq = (a === c);// true
+        )
+
+        as we know now what shallow comparison is 
+        pure component does a shallow comparison of:
+        sc of prev state with current state and sc of prevprops with currentprops.
+
+        if it is found that there is a differnce than only the component is re-rendered.
+
+Memo:-
+    As the pure class components the memo is used for the functional components.
+    For example :-
+    create a functional component and destructure the name prop render that name property.now include this comp in parent comp and pass the name property as prop.In memo comp export the memo comp as the argument of React.memo() function. React.memo is a higher order component it takes in a component adds somthing in it and returns a new component.
+
+Refs:-
+    Well this is used to acess the dom elements to be used within the react but for simplicity, let's suppose we have a login form now as the page loads we want the username to be focused by defalut.
+    create a new file say refsdemo use rce now add an input element and import this to app file. 
+    1) create ref, create an inputref property in the constructure method, assign React.createRef() to it.
+    now attach this inputref to the input element by using the ref attribute.
+    create a componentdidmount method which contains this.inputref.current.focus()to focus this element.
+
+    Now to fetch this input value:-
+    create a button and a click event handler now define the handler, clickhandler as an arrow function which will simply alert and display the input value (use this.inputref.current.value) as the return statement for arrow function.
+
+    There is another way for creating the refs too, its called as call back refs. in this process we will firstly create a null property in the constructor then will create an arrow function which will accept the dom element as argument then we will assign that property the element which we accepted as the argument.
+    now create a mount method(componentDidMount), use if statement to check if that ref property is true or not and if its true than use this.<property>.focus()
+    now in the render method, in the input filed assign the ref keyword to this arrow function.
+
+Refs with class components:-
+    well, as we have done in the previous example, we created a ref to focus the input element.
+    similarly, we will create a file in which we will create an text type input element now in the constructor create the inputref assign it React.createRef() now attach this to input element. create a method focusinput() include current.focus property to it as we have done before. now create a parent class component now add the input component in it and create a focus input button which will trigger the focusinput method. create a new ref for this new component. attach this ref to te input component now add the onclick event handler which contains <thisref>.current.focusinput().
+    now include this component into the app.js file.
+
+Refs Forwarding:-
+    as we have done in the refs with class component we have to create a file say FRInput.js now type rfce and create a functional component but here for ref forwarding comment out or delete the function and create a new arrow function as follows:
+    const <function_name> = React.forwardRef(([as we know here in this bracket props are passed from parent to child component but while in create ref function we can even pass the refs]props, ref)=>return (<input ref={ref})/>).
+
+    now create a parent class component which contains the inputRef property which will be assigned to React.createRef() inside the constructor.now inport the child component in the render method assign the ref atrribute this inputref and add onclick event handler to the button, the handler arrow function whcih contains current.focus().
+
+Portals:-
+    React portals provide the ability to break out of the dom tree for example,
+    in our case everything that we include in app.js falls under the div element with id root now if we want to have a react component out of this root div then we can create a portal which will let us have react component in a new dom element.
+    steps for creating a portal:-
+        create a new div tag say id = "portal-root"in the index.html file right under the root div now create a functional component say protalDemo and give it some jsx and include it in the app.js file now if we save the fiel and look in the browser we will see that the portaldemo would be in root div but for adding portaldemo in portal-root. Change the return statement of portalDemo component to return ReactDOM.createPortal() this function takes in two arguments first is jsx, so pass the jsx of the component into this and as the second argument it accepts the dom query document.getElementById('portal-root')
+
+    If you want to create a modal window this is one of the way for it. 
+
+Error Boundary:-
+    A class component that implements either one or both 1)getDerivedStateFromError and 2)componentDidCatch lifecycle methods.
+        1) It is used to render fallback UI.
+        2) It is used to log the error information.
+
+    1) getDerivedStateFromError:-
+        create a ErrorBoundary class component and create a getDerivedStateFromError method and return hasError property as true then a hasError= flase property in state inside constructor, in the render method check if hasError is true and return a jsx for the error or else return the children.
+    
+    2) ComponentDidCatch:-
+        this method is used to log the error into the console.
+        create a componentDidCatch method, it takes in two parameters first is error and second is the info.
+
+Higher Order Components:-
+    This feature is basically used to have reusable code.
+
+    for example, In counter and hover objects we need to increament the count as the user clicks or hovers over.
+
+    now for this we will create an arrow function which will return back the updated component.
+    we will create a variale and assign it an arrow function. In this arrow function we will take in the original Component as the parameter we will pass the info to these child components as props  for example in the given example we have created hoc for counter so in the hoc we will create the state and pass the count property to counter.js in the form of props in the return statement of the hoc like and in return class component say newcomponent in which we will create state property containg the count now in the increment arrow function we will change the state via setstate now in this we will accept the prevState and update it. the render method will return the original component with props passed inside it.now return this newcomponent and export the updatedcomponent.
+    now in the main components we will destructure the increment and count values and pass accordingly.
+    now import this HOC in the child components and while exporting the child component first of all pass this child component to the HOC function as we have passed it as the argument in HOC function like 
+    (export default {HOC function_name}({Child component}))
+
+Render Props:
+    Well basically the render props are used for sharing the code betwenn componenets, or say render props are used for creating the reusable code.
+    
+Context:
+    This is useful when you need to pass some value to sub component of a sub component.
+    for example, you want to pass the name value to f component which is inside e which is inside c.
+    C -> E -> f
+    now a basic approch would be to pass name value as prop from c to e and then e to f. 
+    Here comes the role of context by using the context you can directly access the name value from any sub component.
+
+    How to use context api:
+        create the above component structure (c->e->f) where the c compoenent returns e and e returns f.
+        now f component returns simple jsx.
+        now create a usercontext file where you will create a createContext variable
+        destructure the provider and consumer components in the file and export them.
+        now you need to import the provider component in the main component from where you want to pass the values.
+        in our case we will add this component in app.js file and pas the value as the you pass the props in to this component.include the c componentinside it.
+        now include the consumer component in the f component then you will be able to use the value as prop.
+        the syntax for the return statementof f component would be 
+        <Consumer-Component-name>
+        {
+            (Value-name) =>{
+                return <div> {Value-name} message</div>
+
+                            }
+        }
+        </Consumer-Component-name>
+
+    you can even set the default value for this context. For setting the default value you need to entre the value while creating the context variable,
+    In our case, if you want to set the defualt value you need to enter the value in the variable where you assigned the context API.
+
+HTTP Requests:
+    First you need to install axios using npm install axios.
+    GET():-
+    now create a class component and create an empty array state property for posts now in the ComponentDidMount lifecycle we will invoke the get request as below:
+        componentDidMount(){
+            axios.get("Here we will copy the url of posts get request from the jsonplaceolder.typicode website")
+        }    
+    now the axios is a promis based library so we will access the returned data with the help od then and catch blocks.
+    In then block we will create an arrow function that accepts resopnse and in return it will change the state by setting the posts value as the resopnse data which is returned from the api call.
+    now to get the data on the page we will destructure the post value from the state now in the code block we will use the logic, how we want to display the data.
+    In our case will use a turnary operator to check if the length of each post data is true or false.
+    If the length of the post is true then e will use map method to itrate over the data and print it as our wish, but if the post length is null then we will print an error so will keep the else part of turnary operator as null.
+    now for the error part, firstly will create an error state property now in the catch block we will update the state with error message by setState method.
+    In the render method will destructure error message and use a turnaryoperator to display the message same as done for posts.
+    
+    POST():-
+    Post request is almost similar to the get request.
+    create a class component and then create a simple form which takes in the 3 inputs and a submit button. now as per the postform component assign them the vlues and handlers.
+    now create the handlers and state properties for those 3 input fields now destrucutre the state properties.
+    import the axios and create a post request in the submit handler as follows:
+        axios
+        .post("server link same as for the get request", this.state)
+        .then(response=>{clg(response)})
+        .catch(error=>{clg(error)})
+
+Hooks:
+    RULES FOR HOOKS:
+        1) Only call hooks at the top level.
+        2) Only call hooks from react functions.
+
+    Hooks lets you use the state functionality in functional component so you dont need to use class components.
+    now import the useState hook as a named import in a functional component. now destructure the variable and its state as follows:
+        const[var, setvar] = useState(default-value)
+    now in the div tag you can use this var directly.
+    In our case if we want to create a simple button then create a counter state property by importing the useState hook.
+    now destructure the count variable in the functional component and in the return statement inside the div create a button tag.
+    now assign the onclick event to an arrow function which will return the state of the variable and in the button you can use the count property directly as follows:
+        const [count, setCount] = useState(0)
+        <div>
+            <button onClick={()=> setCount(count + 1)}> count {count}</button>
+        </div>
+
+    In the next case we will create a decrement button , an increament button and a reset button.
+    assign the default value to a variable now destructure the state and setstate variables.
+    now in the return statement assign the state variable count to display the counts.
+    in the increment button onclick the state variable should increase by one, similarly on click of decrement button the state variable should decrease by one.
+    now on click of reset button the state variable should be replaced by default value.
+    Now for increamenting 5 counts instead of 1 you need to create a handler.
