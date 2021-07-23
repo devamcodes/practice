@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import "./App.css";
 import Greet from "./components/greet";
 import Hello from "./components/hello";
@@ -18,32 +18,32 @@ import ParentComp from "./components/parentComp";
 import FocusInput from "./components/FocusInput";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Hover from "./components/Hover";
-import CComponentForConetxt from "./components/CComponentForConetxt";
+// import CComponentForConetxt from "./components/CComponentForConetxt";
 class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <ParentComp /> */}
-        {/* <Form /> */}
-        {/* <h3 className="error">error</h3>
+        <ParentComp />
+        <Form />
+        <h3 className="error">error</h3>
         <h3 className={styles.success}>success</h3>
-        <Inline /> */}
-        {/* <NameList /> */}
-        {/* <Greet name="Sly" heroName="Slyvester" />*/}
-        {/* <ErrorBoundary>
+        <Inline />
+        <NameList />
+        <Greet name="Sly" heroName="Slyvester" />
+        <ErrorBoundary>
           <Hello name="Sly" heroName="Slyvester" />
         </ErrorBoundary>
         <ErrorBoundary>
           <Hello name="James" heroName="Jamse" />
-        </ErrorBoundary> */}
-        {/*        <Message />
+        </ErrorBoundary>
+               <Message />
         <Clicked />
-       <EventBind /> */}
-        {/* <ParentComponent /> */}
-        {/* <UserGreeting /> */}
-        {/* <FocusInput /> */}
-        {/* <Counter />
-        <Hover /> */}
+       <EventBind />
+        <ParentComponent />
+        <UserGreeting />
+        <FocusInput />
+        <Counter />
+        <Hover />
       </div>
     );
   }
